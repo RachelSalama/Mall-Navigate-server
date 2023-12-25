@@ -1,18 +1,18 @@
 const express = require("express");
 const cors = require("cors");
 // const toyRoutes = require("./routes/toy.routes");
-// const userRoutes = require("./routes/user.routes");
-// const path  = require("path");
+const userRoutes = require("./routes/user.routes");
+const path  = require("path");
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 // app.use("/api/v1/toys", toyRoutes);
-// app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/users", userRoutes);
 
 app.get("/test", (req, res) =>{
     res.json({msg: "hi"});
