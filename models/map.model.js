@@ -6,7 +6,8 @@ const mapSchema = new mongoose.Schema({
         required: true
     },
     place_id:{
-        type: mongoose.Schema.ObjectId,
+        // type: mongoose.Schema.ObjectId,
+        type: String,
         ref: "Mall",
         required: true,
       }
