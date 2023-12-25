@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-// const toyRoutes = require("./routes/toy.routes");
+const mapRoutes = require("./routes/map.routes");
 // const userRoutes = require("./routes/user.routes");
 // const path  = require("path");
 
@@ -13,6 +13,7 @@ app.use(cors());
 
 // app.use("/api/v1/toys", toyRoutes);
 // app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/maps", mapRoutes);
 
 app.get("/test", (req, res) =>{
     res.json({msg: "hi"});
