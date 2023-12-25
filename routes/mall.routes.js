@@ -1,4 +1,5 @@
 const express = require("express");
+const { postMall, getMallById, getMalls } = require("../controllers/mall.controllers");
 const router = express.Router();
 
 
@@ -6,6 +7,6 @@ router.get("/", getMalls);
 
 router.get("/:id", getMallById);
 
-router.post("/", auth(), postMall);
+router.post("/", postMall);
 
 module.exports = router;
