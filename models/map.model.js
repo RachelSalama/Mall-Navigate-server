@@ -8,7 +8,11 @@ const mapSchema = new mongoose.Schema({
     place_id:{
         type: mongoose.Schema.ObjectId,
         ref: "Mall",
-        required: true,
+        required: false,
+      },
+    id:{
+        type: String,
+        required: false,
       }
 });
 

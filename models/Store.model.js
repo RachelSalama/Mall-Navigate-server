@@ -17,10 +17,18 @@ const storeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    color: {
+        type: String,
+        required: false
+    },
     place_id:{
         type: mongoose.Schema.ObjectId,
         ref: "Mall",
         required: true,
+      },
+    id:{
+        type: String,
+        required: false,
       }
 });
 

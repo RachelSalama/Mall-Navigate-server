@@ -11,7 +11,7 @@ exports.auth = () => {
         try {
             const payload = decodeToken(token);
             console.log(payload);
-            res.locals.userId = payload._doc.id;
+            res.locals.place_id = payload._doc.id;
             next();
         }catch(error){
             next(error); 

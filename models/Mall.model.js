@@ -9,6 +9,10 @@ const mallSchema = new mongoose.Schema({
     id: {
         type: String,
         required: false
+    },
+    ownerId: {
+        type: String,
+        required: true
     }
 });
 
