@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 exports.generateToken = (payload) =>{
     try{
-        const token = jwt.sign({...payload}, '123@@', { expiresIn: '2h'});
+        const token = jwt.sign({...payload}, '123@@', { expiresIn: '10h'});
         return token;
     } catch (error) {
         throw Error (error.message);
