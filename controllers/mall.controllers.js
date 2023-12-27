@@ -19,14 +19,14 @@ exports.postMall = async (req, res, next) => {
     const body = req.body;
     const owner_id = res.locals.place_id;
     try {
-        if (owner_id != body.ownerId) throw new Error("wrong owner");
         const newMall = new Mall(body);
         newMall.id = newMall._id;
+        newMall.ownerId = owner_id;
         await newMall.save();
         res.status(201).send(newMall);
     } catch (error) {
         console.log(error);
-        res.sendStatus(400);
+        res.status(400).send(error);
     }
 };
 
