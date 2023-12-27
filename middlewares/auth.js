@@ -4,7 +4,7 @@ exports.auth = () => {
     return async function (req, res, next) {
         let token = req.headers["authorization"];
         if (!token) {
-            return next(error);
+            return next(new Error("Something went wrong"));
         }
         token = token.split(" ")[1];
         console.log(token);
