@@ -15,10 +15,8 @@ exports.getMapsByPlaceId = async (req, res, next) => {
 
 exports.postMap = async (req, res, next) => {
     const body = req.body;
-    const place_id = res.locals.place_id;
     try {
         const newMap = new Map(body);
-        newMap.place_id = place_id;
         newMap.id = newMap._id;
         await newMap.save();
         res.status(201).send(newMap);
