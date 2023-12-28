@@ -14,16 +14,16 @@ exports.getStoresByPlaceId = async (req, res, next) => {
 
 
 exports.postStore = async (req, res, next) => {
-    const body = req.body;
-    const place_id = res.locals.place_id;
-    try {
-        const newStore = new Store(body);
-        newStore.place_id = place_id;
-        newStore.id = newStore._id;
-        await newStore.save();
-        res.status(201).send(newStore);
-    } catch (error) {
-        console.log(error);
-        res.sendStatus(400);
-    }
+    const bodyarr = req.body;//shopArray{}
+    bodyarr.map(async(body) => {
+        try {
+            const newStore = new Store(body);
+            newStore.id = newStore._id;
+            await newStore.save();
+            res.status(201).send(newStore);
+        } catch (error) {
+            console.log(error);
+            res.sendStatus(400);
+        }
+    })
 };

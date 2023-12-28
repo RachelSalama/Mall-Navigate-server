@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const mapSchema = new mongoose.Schema({
     map: {
-        type: [[Number]],
+        type: [[{}]],
         required: true
     },
     place_id:{
