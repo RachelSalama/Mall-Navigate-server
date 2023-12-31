@@ -6,15 +6,15 @@ const storeSchema = new mongoose.Schema({
         required: true
     },
     leftCorner: {
-        type: {},
+        type: Object,
         required: false
     },
     size: {
-        type: Number,
+        type: String,
         required: false
     },
     doorCord: {
-        type: String,
+        type: Object,
         required: true
     },
     color: {
