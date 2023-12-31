@@ -15,15 +15,15 @@ exports.getStoresByPlaceId = async (req, res, next) => {
 
 exports.postStore = async (req, res, next) => {
     const bodyarr = req.body;//shopArray{}
-    bodyarr.map(async(body) => {
-        try {
+    try {
+        for (const body of bodyarr) {
             const newStore = new Store(body);
             newStore.id = newStore._id;
             await newStore.save();
-            res.status(201).send(newStore);
-        } catch (error) {
-            console.log(error);
-            res.sendStatus(400);
         }
-    })
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(400);
+    }
+
 };
