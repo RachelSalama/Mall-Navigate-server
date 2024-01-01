@@ -8,7 +8,6 @@ const dotenv = require("dotenv");
 dotenv.config();//=> {path: "./.env"}
 const mongoURL = process.env.MONGO_URL
 
-
 //connect to database
 const connectToDB = () =>{
 mongoose.connect(mongoURL)
@@ -20,6 +19,7 @@ mongoose.connect(mongoURL)
     log.error(error);
 })
 };
+
 connectToDB();
 
 const PORT = process.env.PORT || 3000;
