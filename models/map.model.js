@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const mapSchema = new mongoose.Schema({
-    map: {
+  mallMap: {
         type: [[]],
         required: true
     },

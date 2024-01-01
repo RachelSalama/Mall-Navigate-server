@@ -4,6 +4,7 @@ const mapRoutes = require("./routes/map.routes");
 const mallRoutes = require("./routes/mall.routes");
 const storeRoutes = require("./routes/store.routes");
 const userRoutes = require("./routes/user.routes");
+const pathRoutes = require("./routes/path.routes");
 const path  = require("path");
 
 const app = express();
@@ -18,6 +19,7 @@ app.use("/api/v1/maps", mapRoutes);
 app.use("/api/v1/mall", mallRoutes);
 app.use("/api/v1/store", storeRoutes);
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/path", pathRoutes);
 
 app.get("/test", (req, res) =>{
     res.json({msg: "hi"});
