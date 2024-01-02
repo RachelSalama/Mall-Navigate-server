@@ -10,7 +10,7 @@ const storeSchema = new mongoose.Schema({
         required: false
     },
     size: {
-        type: Object,
+        type: String,
         required: false
     },
     doorCord: {
