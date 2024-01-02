@@ -37,7 +37,7 @@ exports.getPath = async (req, res, next) => {
   }
   console.log(optimalPath)
   res.setHeader('Content-Type', 'application/json');
-  res.send({ path: optimalPath });
+  res.send({ path: optimalPath, mat: matrix });
 }
 
 // function initializeMatrix(maps) {
