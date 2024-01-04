@@ -1,7 +1,7 @@
 const { Mall } = require("../models/Mall.model");
 const { Store } = require("../models/Store.model");
 const { Map } = require("../models/map.model");
-const { dijkstraWithPath } = require("../utils/calculatePath");
+const { dijkstraWithPath, getStoresInPath } = require("../utils/calculatePath");
 
 
 
@@ -13,10 +13,10 @@ exports.getPath = async (req, res, next) => {
   const matrix = maps.mallMap;
   console.log("matrix:", matrix);
   const storeArr = body.stores;
-  let targets = await Promise.all(storeArr.map(async (store) => {
+  let storePathArr = await Promise.all(storeArr.map(async (store) => {
     return await Store.findOne({ name: store.name, place_id: body.mall.id });
   }));
-  targets = targets.map(target => { return [target.doorCord.row, target.doorCord.col] })
+  let targets = storePathArr.map(target => { return [target.doorCord.row, target.doorCord.col] })
   console.log("targets:" + targets[0]);
   let start = [body.startPoint.doorCord.row, body.startPoint.doorCord.col]
   console.log("start:" + start);
@@ -36,44 +36,8 @@ exports.getPath = async (req, res, next) => {
     console.log(targets);
   }
   console.log(optimalPath)
+  storePathArr = getStoresInPath(optimalPath, storePathArr)
+  console.log("storePathArr:", storePathArr);
   res.setHeader('Content-Type', 'application/json');
-  res.send({ path: optimalPath, mat: matrix });
+  res.send({ path: optimalPath, mat: matrix, storePathArr: storePathArr });
 }
-
-// function initializeMatrix(maps) {
-//   // if (!Array.isArray(maps)) {
-//   //   console.error('Invalid input. Expected an array.');
-//   //   return null;
-//   // }
-//   console.log("maps initializeMatrix:"+maps);
-//   console.log(maps.length);
-//   const matrix = new Array(maps.length);
-
-//   for (let i = 0; i < maps.length; i++) {
-//     const mapElement = maps[i];
-
-//     if (!Array.isArray(mapElement)) {
-//       console.error(`Invalid element at index ${i}. Expected an array.`);
-//       return null;
-//     }
-
-//     // Initialize a sub-array for each element
-//     matrix[i] = new Array(mapElement.length);
-
-//     for (let j = 0; j < mapElement.length; j++) {
-//       const subArray = mapElement[j];
-
-//       if (typeof subArray !== 'object' || !subArray.content) {
-//         console.error(`Invalid sub-array at index ${i}.${j}. Expected an object with 'content' property.`);
-//         return null;
-//       }
-
-//       // Extract the content property and assign it to the matrix
-//       matrix[i][j] = subArray.content;
-//     }
-//   }
-
-//   // Display the initialized matrix
-//   console.log('Initialized Matrix:', matrix);
-//   return matrix;
-// }
