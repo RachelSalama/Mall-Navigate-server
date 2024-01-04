@@ -44,41 +44,27 @@ function dijkstraWithPath(matrix, start, targets) {
   return null; // no path found
 }
 
+function getStoresInPath(path, storePathArr) {
+  const storesInPath = [];
+  const visitedStores = new Set();
 
-// function exampleUsageWithPath() {
-//   const matrix = [
-//     [0, 0, 0, 0, 1],
-//     [0, 1, 1, 0, 0],
-//     [0, 0, 1, 0, 1],
-//     [0, 1, 0, 0, 0],
-//     [0, 0, 0, 1, 0],
-//   ];
+  for (const coord of path) {
+    // Find the store with the matching coordinates
+    const store = storePathArr.find(
+      s => s.doorCord.row === coord[0] && s.doorCord.col === coord[1]
+    );
 
-//   let start = [0, 0];
-//   let targets = [
-//     [4, 4],
-//     [2, 3],
-//     [4, 2],
-//     [4, 3],
-//     [1, 1],
-//     [2, 0]
-//   ];
+    // If a matching store is found and it hasn't been visited yet, add it to the result array
+    if (store && !visitedStores.has(store.id)) {
+      storesInPath.push(store);
+      visitedStores.add(store.id); // Mark the store as visited
+    }
+  }
 
-//   while (targets.length > 0) {
-//     const path = dijkstraWithPath(matrix, start, targets);
-//     if (path) {
-//       console.log("Path to the closest target:", path);
-//     } else {
-//       console.log("No path found to any target");
-//       return;
-//     }  
-//     start = path[path.length - 1];
-//     targets = targets.filter(target => target.toString() !== start.toString());
-//     console.log(targets);
-//   }
-// }
+  return storesInPath;
+}
 
 
 
-module.exports = { dijkstraWithPath };
+module.exports = { dijkstraWithPath , getStoresInPath};
 
