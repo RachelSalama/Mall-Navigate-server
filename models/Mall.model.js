@@ -10,6 +10,10 @@ const mallSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    latlng: {
+        type: [],
+        required: false
+    },
     ownerId: {
         type: String,
         required: true
@@ -22,7 +26,7 @@ const mallSchema = new mongoose.Schema({
 
 const Mall = mongoose.model("Mall", mallSchema);
 
-mallSchema.pre("save", function(next){
+mallSchema.pre("save", function (next) {
     this.id = String(this._id);
     next();
 })
