@@ -13,6 +13,10 @@ const mallSchema = new mongoose.Schema({
     ownerId: {
         type: String,
         required: true
+    },
+    coords:{
+        type:[],
+        required:false
     }
 });
 
