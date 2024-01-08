@@ -13,21 +13,21 @@ exports.sendEmail = async (req, res) => {
     console.log("to" + to);
     console.log("text" + text);
 
-
-
     // Create a nodemailer transporter using your email provider's settings
     const transporter = nodemailer.createTransport({
-        host: "sandbox.smtp.mailtrap.io",
-        port: 2525,
-        auth: {
-            user: "733aa0e28aee9d",
-            pass: "1b40c03496ea53"
-        }
+        
+        service: 'gmail',
+            auth: {
+                user: 'donotreplay08@gmail.com',
+                pass: 'oucg sbpm eiqz hyrl'
+            }
+
+
     });
 
     // Email options
     const mailOptions = {
-        from: 'mall-navigation@outlook.com',
+        from: 'donotreplay08@gmail.com',
         to,
         subject,
         text,
